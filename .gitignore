@@ -12,11 +12,11 @@
 
 # testing
 /coverage
-/videos
-/public/videos
-public/videos
-*.mp4
-*.mov
+# /videos
+# /public/videos
+# public/videos
+# *.mp4
+# *.mov
 # next.js
 /.next/
 /out/
