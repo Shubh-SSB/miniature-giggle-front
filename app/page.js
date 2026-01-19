@@ -1,20 +1,14 @@
 "use client";
 
-import { Navbar } from "@/components/layout/navbar";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { ReactLenis } from "lenis/react";
 import { HeroSection } from "@/components/hero-section";
-import { CurvedLine } from "@/components/ui/curved-line";
-import { Storysection } from "@/components/layout/story";
 import RevealSection from "@/components/sections/reveal";
-import { io } from "socket.io-client";
-import Protect from "@/components/sections/protection";
 import StoryScroll from "@/components/sections/storyscroll";
 import DemoSection from "@/components/sections/DemoSection";
 import { Contact } from "@/components/sections/contact";
-import { Footer } from "@/components/layout/Footer";
-import FooterCard from "@/components/ui/FooterCard";
 import { Exercise } from "@/components/sections/Exercise";
+import RippleCursor from "@/components/ui/TrailCursor";
 
 const Home = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);

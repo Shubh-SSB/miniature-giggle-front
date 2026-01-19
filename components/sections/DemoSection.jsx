@@ -1,16 +1,15 @@
+"use client";
+
 import React from 'react'
-import { playfair } from '../../app/layout'
-import SubscribeButton from '../ui/subscribebtn'
 import { EyeIndicator } from '../ui/eye-indicator'
-import { Binoculars, BinocularsIcon, BrainCircuit } from 'lucide-react'
+import { BrainCircuit } from 'lucide-react'
 import Image from 'next/image'
-import Protect from './protection'
-import LiquidLens from '../LiquidLens'
+import RippleCursor from '../ui/TrailCursor'
 
 const DemoSection = () => {
     return (
-        <div className="min-h-screen font-poppins bg-gradient-to-br from-black via-amber-200 to-black py-20 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+        <div className="min-h-screen font-poppins rounded-2xl mx-2 bg-gradient-to-br from-black via-amber-200 to-black py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto relative z-10">
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h2 className={`text-5xl md:text-6xl font-semibold text-white mb-6`}>
@@ -52,7 +51,6 @@ const DemoSection = () => {
                             <h3 className="text-xl font-semibold text-white mb-3">Detailed Analytics</h3>
                             <p className="text-gray-400">Get comprehensive insights into your eye health patterns and trends</p>
                             <BrainCircuit height={40} width={40} className='text-center mt-8' />
-                            {/* <Image src="/images/analytics.gif" alt="Analytics Demo" width={120} height={120} className='mx-auto mt-2' /> */}
                         </div>
                     </div>
                 </div>
@@ -61,7 +59,7 @@ const DemoSection = () => {
                 <div className="text-center flex justify-center">
                     {/* <SubscribeButton /> */}
                     <button className='flex flex-row items-center gap-1  text-black font-semibold py-4 px-8 rounded-lg'>
-                        Want To Have A <a href="#" className=''>Demo</a>
+                        Want To Have A <a href="/demo" className='hover:text-white font-bold hover:scale-105 transition-all mx-2'>Demo</a>
                         <div className='transition-transform duration-300 -rotate-24 -ml-24 mt-12  hover:-rotate-48'>
                             <Image src="/images/scribble.png" alt="Demo" width={64} height={64} className='mx-auto pointer-events-auto' />
                         </div>

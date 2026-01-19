@@ -1,14 +1,34 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import React, { useRef, useState } from "react";
+import ChatBotBang from "./chatbot-bang";
 
 const Skiper19 = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const [shake, setShake] = useState(false);
+  const [showChat, setShowChat] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
   });
 
+  // Trigger shake when near the bottom (path meets the arrow tip)
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setShake(v >= 0.92);
+  });
+
+  const src =
+    "https://lottie.host/d53c87a8-90ce-462e-888a-12bc19c8f722/I3kECD7V5N.lottie";
+  const src2 =
+    "https://lottie.host/08e4da2c-ace9-4bef-8747-0931719bb1d0/ffpgsQ6e1v.lottie";
+  const src3 =
+    "https://lottie.host/ffb4b731-20c8-4b85-a3f7-8b31a55a6630/gODEeMIE69.lottie";
   return (
     <section
       ref={ref}
@@ -20,11 +40,38 @@ const Skiper19 = () => {
           <br /> Story That You <br />
           Follow Daily
         </h1>
-
         <LinePath
           className="absolute -right-3/4 top-0 z-0"
           scrollYProgress={scrollYProgress}
+          shake={shake}
         />
+
+        <motion.div
+          className="pointer-events-auto cursor-pointer fixed bottom-16 right-12 z-30 select-none text-5xl font-black text-amber-200 drop-shadow-[0_0_14px_rgba(255,224,130,0.9)]"
+          onClick={() => setShowChat(true)}
+          animate={
+            shake
+              ? {
+                  scale: [0, 1.2, 0.95, 1],
+                  rotate: [-12, 12, -6, 6, 0],
+                  opacity: [0, 1, 1, 0.85],
+                }
+              : { scale: 0, opacity: 0 }
+          }
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <span className="text-outline-2">BANG!</span>
+        </motion.div>
+        <ChatBotBang open={showChat} onClose={() => setShowChat(false)} />
+        {/* <div className="absolute right-10 -bottom-180">
+          <DotLottieReact src={src} loop autoplay className="h-32 w-64" />
+        </div>{" "}
+        <div className="absolute left-10 -bottom-250">
+          <DotLottieReact src={src2} loop autoplay className="h-32 w-64" />
+        </div>{" "}
+        {/* <div className="absolute right-20 -bottom-100">
+          <DotLottieReact src={src3} loop autoplay className="h-32 w-64" />
+        </div> */}
       </div>
 
       {/* <div className="rounded-4xl font-poppins w-7xl translate-y-[29vh] bg-black/25 border-amber-200 border backdrop-blur-xl pb-10">
@@ -44,9 +91,11 @@ export { Skiper19 };
 const LinePath = ({
   className,
   scrollYProgress,
+  shake,
 }: {
   className: string;
   scrollYProgress: any;
+  shake: boolean;
 }) => {
   const pathLength = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
 
@@ -81,6 +130,8 @@ const LinePath = ({
           pathLength,
           strokeDashoffset: useTransform(pathLength, (value) => 1 - value),
         }}
+        animate={shake ? { x: [0, -6, 6, -4, 4, -2, 2, 0] } : { x: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
       />
     </svg>
   );

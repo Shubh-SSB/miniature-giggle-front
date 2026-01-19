@@ -176,6 +176,18 @@ html, body {
   @variants responsive {
     /* Empty to allow custom animations */
   }
+
+
+}
+
+.text-outline-2 {
+  -webkit-text-stroke: 1px rgb(255, 255, 255);
+  stroke: 1px rgb(255, 255, 255);
+}
+
+.text-outline-3 {
+  -webkit-text-stroke: 1px rgb(255, 234, 130);
+  stroke: 1px rgb(255, 234, 130);
 }
 
 @keyframes shimmer {
